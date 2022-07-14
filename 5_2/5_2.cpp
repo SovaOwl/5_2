@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -7,28 +7,6 @@ class Figure3
 {
 private:
 	string name = "Плюмбус треугольный: ";
-	int a = -999, b = -999, c = -999, d = -999;
-	int A = -999, B = -999, C = -999, D = -999;
-
-public:
-	virtual string display_name()
-	{
-		return name;
-	}
-	virtual string side_lengths()
-	{
-		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c) + " " + "d=" + to_string(d);
-	}
-	virtual string angle_value()
-	{
-		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C) + " " + "D=" + to_string(D);
-	}
-};
-
-class Figure4
-{
-private:
-	string name = "Плюмбус квадратный: ";
 	int a = -999, b = -999, c = -999;
 	int A = -999, B = -999, C = -999;
 
@@ -44,6 +22,28 @@ public:
 	virtual string angle_value()
 	{
 		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C);
+	}
+};
+
+class Figure4
+{
+private:
+	string name = "Плюмбус квадратный: ";
+	int a = -999, b = -999, c = -999, d = -999;
+	int A = -999, B = -999, C = -999, D = -999;
+
+public:
+	virtual string display_name()
+	{
+		return name;
+	}
+	virtual string side_lengths()
+	{
+		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c) + " " + "d=" + to_string(d);
+	}
+	virtual string angle_value()
+	{
+		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C) + " " + "D=" + to_string(D);;
 	}
 };
 
@@ -153,11 +153,11 @@ public:
 	}
 	string side_lengths() override
 	{
-		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c);
+		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c) + " " + "d=" + to_string(d);
 	}
 	string angle_value() override
 	{
-		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C);
+		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C) + " " + "D=" + to_string(D);
 	}
 
 };
@@ -176,11 +176,11 @@ public:
 	}
 	string side_lengths() override
 	{
-		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c);
+		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c) + " " + "d=" + to_string(d);
 	}
 	string angle_value() override
 	{
-		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C);
+		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C) + " " + "D=" + to_string(D);
 	}
 
 };
@@ -199,11 +199,11 @@ public:
 	}
 	string side_lengths() override
 	{
-		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c);
+		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c) + " " + "d=" + to_string(d);
 	}
 	string angle_value() override
 	{
-		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C);
+		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C) + " " + "D=" + to_string(D);
 	}
 
 };
@@ -222,11 +222,11 @@ public:
 	}
 	string side_lengths() override
 	{
-		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c);
+		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c) + " " + "d=" + to_string(d);
 	}
 	string angle_value() override
 	{
-		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C);
+		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C) + " " + "D=" + to_string(D);
 	}
 
 };
@@ -245,11 +245,11 @@ public:
 	}
 	string side_lengths() override
 	{
-		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c);
+		return "a=" + to_string(a) + " " + "b=" + to_string(b) + " " + "c=" + to_string(c) + " " + "d=" + to_string(d);
 	}
 	string angle_value() override
 	{
-		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C);
+		return "A=" + to_string(A) + " " + "B=" + to_string(B) + " " + "C=" + to_string(C) + " " + "D=" + to_string(D);
 	}
 
 };
