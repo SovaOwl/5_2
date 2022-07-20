@@ -3,246 +3,169 @@
 
 using namespace std;
 
-//Родитель для трайангулов
-class Figure3
+//Родитель
+class Figure {
+
+private:
+    string figure_name;
+protected:
+
+    void set_figure_name(string name)
+    {
+        figure_name = name;
+    }
+    string get_figure_name()
+    {
+        return figure_name;
+    }
+
+public:
+    Figure()
+    {
+        figure_name = "Фигура:";
+    }
+    virtual void get_info()
+    {
+        cout << figure_name << endl;
+    }
+};
+
+//Пошли треугольники
+
+class Triangle :public Figure
 {
 private:
-	int a1 = -999, b1 = -999, c1 = -999;
-	int A1 = -999, B1 = -999, C1 = -999;
+    int a1, b1, c1;
+    int A1, B1, C1;
 
 public:
-	virtual string display_name()
-	{
-		return "Треугольник: ";
-	}
-	Figure3(int a2, int b2, int c2, int A2, int B2, int C2)
-	{
-		a1 = a2, b1 = b2, c1 = c2;
-		A1 = A2, B1 = B2, C1 = C2;
-	}
-	Figure3(int a2, int b2, int c2, int A2, int B2) //прямоугольный треугольник (угол C всегда равен 90)
-	{
-		a1 = a2, b1 = b2, c1 = c2;
-		A1 = A2, B1 = B2, C1 = 90;
-	}
-	Figure3(int a2, int b2, int A2, int B2) //равнобедренный треугольник (стороны a и c равны, углы A и C равны)
-	{
-		a1 = c1 = a2, b1 = b2;
-		A1 = C1 = A2, B1 = B2;
-	}
-	Figure3(int a2) //равносторонний треугольник (все стороны равны, все углы равны 60)
-	{
-		a1 = b1 = c1 = a2;
-		A1 = B1 = C1 = 60;
-	}
-
-	int a()
-	{
-		return a1;
-	}
-	int b()
-	{
-		return b1;
-	}
-	int c()
-	{
-		return c1;
-	}
-
-	int A()
-	{
-		return A1;
-	}
-	int B()
-	{
-		return B1;
-	}
-	int C()
-	{
-		return C1;
-	}
+    Triangle(int a2, int b2, int c2, int A2, int B2, int C2) :Figure()
+    {
+        set_figure_name("Треугольник:");
+        a1 = a2, b1 = b2, c1 = c2, A1 = A2, B1 = B2, C1 = C2;
+    }
+    void get_info() override
+    {
+        cout << get_figure_name() << endl;
+        cout << "Стороны: " << "a=" << a1 << " " << "b=" << b1 << " " << "c=" << c1 << endl;
+        cout << "Углы: " << "A=" << A1 << " " << "B=" << B1 << " " << "C=" << C1 << endl << endl;
+    }
 };
 
-//Родитель для сквейеров
-class Figure4
+class Right_triangle :public Triangle //прямоугольный треугольник (угол C всегда равен 90)
+{
+public:
+    Right_triangle(int a, int b, int c, int A, int B) :Triangle(a, b, c, A, B, 90)
+    {
+        set_figure_name("Прямоугольный треугольник:");
+    }
+};
+
+class Isosceles_triangle : public Triangle //равнобедренный треугольник (стороны a и c равны, углы A и C равны)
+{
+public:
+    Isosceles_triangle(int a, int b, int A, int B) : Triangle(a, b, a, A, B, A)
+    {
+        set_figure_name("Равнобедренный треугольник:");
+    }
+};
+
+class Equilateral_triangle : public Triangle //равносторонний треугольник (все стороны равны, все углы равны 60)
+{
+public:
+    Equilateral_triangle(int a) : Triangle(a, a, a, 60, 60, 60)
+    {
+        set_figure_name("Равносторонний треугольник:");
+    }
+};
+
+//Пошли четырёхугольники
+
+class Quadrilateral :public Figure
 {
 private:
-	int a1 = -999, b1 = -999, c1 = -999, d1 = -999;
-	int A1 = -999, B1 = -999, C1 = -999, D1 = -999;
+    int a1, b1, c1, d1;
+    int A1, B1, C1, D1;
 
 public:
-	virtual string display_name()
-	{
-		return "Четырёхугольник: ";
-	}
 
-	Figure4(int a2, int b2, int c2, int d2, int A2, int B2, int C2, int D2)
-	{
-		a1 = a2, b1 = b2, c1 = c2, d1 = d2;
-		A1 = A2, B1 = B2, C1 = C2, D1 = D2;
-	}
-	Figure4(int a2, int b2) //прямоугольник (стороны a,c и b,d попарно равны, все углы равны 90)
-	{
-		a1 = c1 = a2, b1 = d1 = b2;
-		A1 = B1 = C1 = D1 = 90;
-	}
-	Figure4(int a2) //квадрат (все стороны равны, все углы равны 90)
-	{
-		a1 = b1 = c1 = d1 = a2;
-		A1 = B1 = C1 = D1 = 90;
-	}
-	Figure4(int a2, int b2, int A2, int B2, int C2, int D2) //параллелограмм (стороны a,c и b,d попарно равны, углы A,C и B,D попарно равны)
-	{
-		a1 = c1 = a2, b1 = d1 = b2;
-		A1 = C1 = A2, B1 = D1 = B2;
-	}
-	Figure4(int a2, int A2, int B2) //ромб (все стороны равны, углы A,C и B,D попарно равны)
-	{
-		a1 = b1 = c1 = d1 = a2;
-		A1 = C1 = A2, B1 = D1 = B2;
-	}
-	int a()
-	{
-		return a1;
-	}
-	int b()
-	{
-		return b1;
-	}
-	int c()
-	{
-		return c1;
-	}
-	int d()
-	{
-		return d1;
-	}
-
-	int A()
-	{
-		return A1;
-	}
-	int B()
-	{
-		return B1;
-	}
-	int C()
-	{
-		return C1;
-	}
-	int D()
-	{
-		return D1;
-	}
+    Quadrilateral(int a2, int b2, int c2, int d2, int A2, int B2, int C2, int D2) :Figure()
+    {
+        set_figure_name("Четырёхугольник:");
+        a1 = a2, b1 = b2, c1 = c2, d1 = d2, A1 = A2, B1 = B2, C1 = C2, D1 = D2;
+    }
+    void get_info() override
+    {
+        cout << get_figure_name() << endl;
+        cout << "Стороны: " << "a=" << a1 << " " << "b=" << b1 << " " << "c=" << c1 << " " << "d=" << d1 << endl;
+        cout << "Углы: " << "A=" << A1 << " " << "B=" << B1 << " " << "C=" << C1 << " " << "D=" << D1 << endl << endl;
+    }
 };
 
-//Пошли потомки трайангулы
-class Right_triangle : public Figure3
+class Rectangle : public Quadrilateral //прямоугольник (стороны a,c и b,d попарно равны, все углы равны 90)
 {
 public:
-	string display_name() override
-	{
-		return "Прямоугольный треугольник: ";
-	}
-	Right_triangle(int a2, int b2, int c2, int A2, int B2) : Figure3(a2, b2, c2, A2, B2)
-	{}
-};
-class Isosceles_triangle : public Figure3
-{
-public:
-	string display_name() override
-	{
-		return "Равнобедренный треугольник: ";
-	}
-	Isosceles_triangle(int b2, int c2, int B2, int C2) : Figure3(b2, c2, B2, C2)
-	{}
-};
-class Equilateral_triangle : public Figure3
-{
-public:
-	string display_name() override
-	{
-		return "Равносторонний треугольник: ";
-	}
-	Equilateral_triangle(int a2) : Figure3(a2)
-	{}
+    Rectangle(int a, int b) : Quadrilateral(a, b, a, b, 90, 90, 90, 90)
+    {
+        set_figure_name("Прямоугольник:");
+    }
 };
 
-//Пошли потомки свкейры
-class Rectangle : public Figure4
+class Square : public Quadrilateral //квадрат (все стороны равны, все углы равны 90)
 {
 public:
-	string display_name() override
-	{
-		return "Прямоугольник: ";
-	}
-	Rectangle(int a2, int b2) : Figure4(a2, b2)
-	{}
+    Square(int a) : Quadrilateral(a, a, a, a, 90, 90, 90, 90)
+    {
+        set_figure_name("Квадрат:");
+    }
 };
-class Square : public Figure4
+
+class Parallelogram : public Quadrilateral //параллелограмм (стороны a,c и b,d попарно равны, углы A,C и B,D попарно равны)
 {
 public:
-	string display_name() override
-	{
-		return "Квадрат: ";
-	}
-	Square(int a2) : Figure4(a2)
-	{}
+    Parallelogram(int a, int b, int A, int B) : Quadrilateral(a, b, a, b, A, B, A, B)
+    {
+        set_figure_name("Параллелограмм:");
+    }
 };
-class Parallelogram : public Figure4
+
+class Rhombus : public Quadrilateral //ромб (все стороны равны, углы A,C и B,D попарно равны)
 {
 public:
-	string display_name() override
-	{
-		return "Параллелограмм: ";
-	}
-	Parallelogram(int a2, int b2, int A2, int B2, int C2, int D2) : Figure4(a2, b2, A2, B2, C2, D2)
-	{}
-};
-class Rhombus : public Figure4
-{
-public:
-	string display_name() override
-	{
-		return "Ромб: ";
-	}
-	Rhombus(int a2, int A2, int B2) : Figure4(a2, A2, B2)
-	{}
+    Rhombus(int a, int A, int B) : Quadrilateral(a, a, a, a, A, B, A, B)
+    {
+        set_figure_name("Ромб:");
+    }
 };
 
 //Функции вывода на экран
-void print_figures3(Figure3* figure)
+void print_figures(Figure* figure)
 {
-	cout << figure->display_name() << endl << "Стороны: a=" << figure->a() << " b=" << figure->b() << " c=" << figure->c() << endl << "Углы: A=" << figure->A() << " B=" << figure->B() << " C=" << figure->C() << endl << endl;
+    figure->get_info();
 }
-void print_figures4(Figure4* figure)
-{
-	cout << figure->display_name() << endl << "Стороны: a=" << figure->a() << " b=" << figure->b() << " c=" << figure->c() << " d=" << figure->d() << endl << "Углы: A=" << figure->A() << " B=" << figure->B() << " C=" << figure->C() << " D=" << figure->D() << endl << endl;
-}
-
 int main()
 {
-	setlocale(LC_ALL, "Rus");
+    setlocale(LC_ALL, "Rus");
 
-	Figure3 triangle(10, 20, 30, 50, 60, 70);
-	Right_triangle right_triangle(10, 20, 30, 50, 60);
-	Isosceles_triangle isosceles_triangle(10, 20, 50, 60);
-	Equilateral_triangle equilateral_triangle(30);
+    Triangle triangle(10, 20, 30, 50, 60, 70);
+    Right_triangle  right_triangle(10, 20, 30, 50, 60);
+    Isosceles_triangle isosceles_triangle(10, 20, 50, 60);
+    Equilateral_triangle equilateral_triangle(30);
 
-	Figure4 quadrilateral(10, 20, 30, 40, 50, 60, 70, 80);
-	Rectangle rectangle(10, 20);
-	Square square(20);
-	Parallelogram parallelogram(20, 30, 30, 40, 30, 40);
-	Rhombus rhombus(30, 30, 40);
+    Quadrilateral quadrilateral(10, 20, 30, 40, 50, 60, 70, 80);
+    Rectangle rectangle(10, 20);
+    Square square(20);
+    Parallelogram parallelogram(20, 30, 30, 40);
+    Rhombus rhombus(30, 30, 40);
 
-	print_figures3(&triangle);
-	print_figures3(&right_triangle);
-	print_figures3(&isosceles_triangle);
-	print_figures3(&equilateral_triangle);
+    print_figures(&triangle);
+    print_figures(&right_triangle);
+    print_figures(&isosceles_triangle);
+    print_figures(&equilateral_triangle);
 
-	print_figures4(&quadrilateral);
-	print_figures4(&rectangle);
-	print_figures4(&square);
-	print_figures4(&parallelogram);
-	print_figures4(&rhombus);
+    print_figures(&quadrilateral);
+    print_figures(&rectangle);
+    print_figures(&square);
+    print_figures(&parallelogram);
+    print_figures(&rhombus);
 }
