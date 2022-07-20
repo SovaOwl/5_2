@@ -4,8 +4,8 @@
 using namespace std;
 
 //Родитель
-class Figure {
-
+class Figure
+{
 private:
     string figure_name;
 protected:
